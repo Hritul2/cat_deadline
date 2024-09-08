@@ -1,4 +1,4 @@
-import useDateInfo from "./hooks/useDateInfo";
+import useDateInfo from "../hooks/useDateInfo";
 
 const DateInfo = () => {
   const { currentDate, daysUntilCAT } = useDateInfo(); // Get values from custom hook

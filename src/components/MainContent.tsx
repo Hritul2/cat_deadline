@@ -1,6 +1,6 @@
 import CounterBox from "./CounterBox";
 import { useRecoilState } from "recoil";
-import { dilrState, quantsState, verbalState } from "./recoil_store/store";
+import { dilrState, quantsState, verbalState } from "../recoil_store/store";
 
 const MainContent = () => {
   const [dilr, setDilr] = useRecoilState(dilrState);

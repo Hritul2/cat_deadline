@@ -1,4 +1,5 @@
 export const envs = {
-  telegram_token: import.meta.env.VITE_TELEGRAM_BOT_TOKEN,
-  telegram_chat_id: import.meta.env.VITE_TELEGRAM_CHAT_ID,
+  password_hash: String(import.meta.env.VITE_PASSWORD_HASH),
+  telegram_token: String(import.meta.env.VITE_TELEGRAM_BOT_TOKEN),
+  telegram_chat_id: String(import.meta.env.VITE_TELEGRAM_CHAT_ID),
 };

@@ -24,3 +24,7 @@ export const daysUntilCATState = atom({
   key: "daysUntilCATState",
   default: 0,
 });
+export const authState = atom({
+  key: "authState",
+  default: localStorage.getItem("loggedIn") || "false",
+});

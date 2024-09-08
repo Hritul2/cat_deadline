@@ -1,6 +1,9 @@
+// App Component
 import { useRecoilValue } from "recoil";
-import DateInfo from "./DateInfo";
-import MainContent from "./MainContent";
+import { authState } from "./recoil_store/store";
+import { useNavigate } from "react-router-dom";
+import DateInfo from "./components/DateInfo";
+import MainContent from "./components/MainContent";
 import { sendMessage } from "./utils/sendTelegramMessage";
 import {
   currentDateState,
@@ -10,13 +13,17 @@ import {
   daysUntilCATState,
 } from "./recoil_store/store";
 
-function App() {
-  // const [isModalOpen, setIsModalOpen] = useState(false); // Modal state
+import { useEffect } from "react";
+
+const App = () => {
   const dilr = useRecoilValue(dilrState);
   const quants = useRecoilValue(quantsState);
   const verbal = useRecoilValue(verbalState);
   const currentDate = useRecoilValue(currentDateState);
   const daysUntilCAT = useRecoilValue(daysUntilCATState);
+
+  const navigate = useNavigate();
+  const loggedIn = useRecoilValue(authState);
 
   const message = `
   You did:
@@ -27,14 +34,19 @@ function App() {
   There are ${daysUntilCAT} days until CAT 2024.
   `;
 
+  useEffect(() => {
+    if (loggedIn === "false") {
+      navigate("/login");
+    }
+  }, [loggedIn, navigate]);
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center gap-32 bg-gray-900 p-12">
       <DateInfo />
       <div className="flex flex-col items-center">
         <MainContent />
-        {/* Export Button */}
         <button
-          onClick={() => sendMessage(message)} // Open modal on click
+          onClick={() => sendMessage(message)}
           className="bg-red-500 hover:bg-red-600 text-white font-semibold py-4 px-8 rounded-lg transition-all text-2xl"
         >
           Export
@@ -42,6 +54,6 @@ function App() {
       </div>
     </div>
   );
-}
+};
 
 export default App;
