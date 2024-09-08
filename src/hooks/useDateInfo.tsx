@@ -8,7 +8,11 @@ const useDateInfo = () => {
 
   useEffect(() => {
     const today = new Date();
-    const options = { day: "2-digit", month: "long", year: "numeric" };
+    const options: Intl.DateTimeFormatOptions = {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    };
     const formattedDate = today.toLocaleDateString("en-GB", options);
     setCurrentDate(formattedDate);
 
